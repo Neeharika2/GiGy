@@ -28,10 +28,11 @@ const io = socketIo(server, {
 // Middleware
 
 app.use(cors({
-  origin: '4.240.88.99', 
+  origin: 'http://4.240.88.99/gigy', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
