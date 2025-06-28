@@ -7,6 +7,11 @@ const cloudinary = require('../utils/cloudinary');
 // @access  Private
 const createGig = async (req, res) => {
   try {
+    // Check if req.user exists (authentication middleware)
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ message: 'Not authorized, user not found' });
+    }
+
     const { title, description, category, budget, location, duration, skills } = req.body;
     
     const gig = new Gig({
