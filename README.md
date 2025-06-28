@@ -15,7 +15,7 @@ GiGy is a task marketplace platform with a Node.js/Express backend and MongoDB d
 
 1. **Clone the repository:**
    ```sh
-   git clone <your-repo-url>
+   git clone <https://github.com/Neeharika2/GiGy.git>
    cd GiGy
    ```
 
@@ -46,13 +46,17 @@ backend/
   utils/
   server.js
   .env
-  ...
+forntend/
+   public/
+   src/
+   .env
+...
+```  
 
 
-## Notes
+## Notes 
 
 - Uploaded files are stored in `/uploads` (excluded from git).
 - For Cloudinary integration, set your credentials in `.env`.
 - For any issues, check logs or open an issue.
 
----
