@@ -15,38 +15,26 @@ const GigListPage = () => {
   const [maxBudget, setMaxBudget] = useState('');
   const [status, setStatus] = useState('open');
 
+  const filters = { category, search, minBudget, maxBudget, status };
+
   useEffect(() => {
     const fetchGigs = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        let url = `${process.env.REACT_APP_API_URL}/gigs?status=${status}`;
-        
-        if (category) {
-          url += `&category=${category}`;
-        }
-        
-        if (search) {
-          url += `&search=${search}`;
-        }
-        
-        if (minBudget) {
-          url += `&minBudget=${minBudget}`;
-        }
-        
-        if (maxBudget) {
-          url += `&maxBudget=${maxBudget}`;
-        }
-        
-        const { data } = await axios.get(url);
-        setGigs(data);
-        setLoading(false);
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/gigs`, { params: filters });
+        // Ensure data is always an array
+        setGigs(Array.isArray(data) ? data : []);
       } catch (err) {
         setError('Failed to fetch gigs. Please try again.');
+        setGigs([]);
+      } finally {
         setLoading(false);
       }
     };
     
     fetchGigs();
-  }, [category, search, minBudget, maxBudget, status]);
+  }, [filters]);
 
   const handleFilter = (e) => {
     e.preventDefault();
@@ -136,7 +124,7 @@ const GigListPage = () => {
           ) : error ? (
             <div className="error-state">{error}</div>
           ) : gigs.length === 0 ? (
-            <div className="empty-state">No gigs found. Try changing your filters.</div>
+            <div className="empty-state">No gigs found.</div>
           ) : (
             <div className="gigs-grid">
               {gigs.map((gig) => (
@@ -167,5 +155,6 @@ const GigListPage = () => {
     </div>
   );
 };
+
 
 export default GigListPage;
