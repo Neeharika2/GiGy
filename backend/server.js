@@ -28,7 +28,7 @@ const io = socketIo(server, {
 // Middleware
 
 app.use(cors({
-  origin: '*',  // TEMP: Allow all origins
+  origin: '4.240.88.99', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
