@@ -2,6 +2,7 @@
 
 GiGy is a task marketplace platform with a Node.js/Express backend and MongoDB database.
 
+Live link - http://4.240.88.99/
 ## Features
 
 - User registration and authentication (JWT)
@@ -15,7 +16,7 @@ GiGy is a task marketplace platform with a Node.js/Express backend and MongoDB d
 
 1. **Clone the repository:**
    ```sh
-   git clone <https://github.com/Neeharika2/GiGy.git>
+   git clone https://github.com/Neeharika2/GiGy.git
    cd GiGy
    ```
 
