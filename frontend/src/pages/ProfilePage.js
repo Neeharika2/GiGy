@@ -9,8 +9,6 @@ const ProfilePage = () => {
   const { userInfo, updateProfile, uploadProfilePicture, isLoading, error } = useContext(AuthContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [bio, setBio] = useState('');
   const [skills, setSkills] = useState('');
   const [location, setLocation] = useState('');

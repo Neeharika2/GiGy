@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaBriefcase } from 'react-icons/fa';
 import './HomePage.css';
 
 const HomePage = () => {
-  const [radius, setRadius] = useState(3);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <div className="page-container">
       <main className="main-content">
