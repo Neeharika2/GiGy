@@ -7,7 +7,8 @@ const {
   getUserProfile, 
   getUserById,
   updateUserProfile,
-  uploadProfilePicture
+  uploadProfilePicture,
+  changePassword
 } = require('../controllers/userController');
 const uploadMiddleware = require('../middleware/uploadMiddleware');
 
@@ -19,6 +20,7 @@ router.get('/:id', getUserById);
 // Protected routes
 router.get('/profile', protect, getUserProfile);
 router.put('/profile', protect, updateUserProfile);
+router.put('/change-password', protect, changePassword);
 router.post('/profile/picture', protect, uploadMiddleware.single('image'), uploadProfilePicture);
 
 module.exports = router;

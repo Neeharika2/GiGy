@@ -15,7 +15,10 @@ const GigListPage = () => {
   const [maxBudget, setMaxBudget] = useState('');
   const [status, setStatus] = useState('open');
 
-  const filters = { category, search, minBudget, maxBudget, status };
+  const filters = React.useMemo(
+    () => ({ category, search, minBudget, maxBudget, status }),
+    [category, search, minBudget, maxBudget, status]
+  );
 
   useEffect(() => {
     const fetchGigs = async () => {

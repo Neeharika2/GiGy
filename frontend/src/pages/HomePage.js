@@ -23,31 +23,38 @@ const HomePage = () => {
                 <span className="badge-icon">⚡</span>
                 <span className="badge-text">The Future of Work</span>
               </div>
-              <h1 className="main-heading">Welcome to GiGy</h1>
+              <h1 className="main-heading">Connect, Create, Complete</h1>
+              <h2 className="sub-heading">Your Gateway to Freelance Success</h2>
               <p className="subtext">
-                The marketplace for tasks and gigs. Find work or hire talent easily.
+                Join the revolutionary marketplace where talented professionals meet ambitious projects. 
               </p>
-              <div className="stats-row">
-                <div className="stat-item">
-                  <span className="stat-number">10K+</span>
-                  <span className="stat-label">Active Gigs</span>
+              <div className="feature-highlights">
+                <div className="highlight-item">
+                  <span className="highlight-icon">🚀</span>
+                  <span className="highlight-text">Launch Your Career</span>
                 </div>
-                <div className="stat-item">
-                  <span className="stat-number">5K+</span>
-                  <span className="stat-label">Freelancers</span>
+                <div className="highlight-item">
+                  <span className="highlight-icon">💼</span>
+                  <span className="highlight-text">Find Perfect Matches</span>
                 </div>
-                <div className="stat-item">
-                  <span className="stat-number">8K+</span>
-                  <span className="stat-label">Completed Tasks</span>
+                <div className="highlight-item">
+                  <span className="highlight-icon">⭐</span>
+                  <span className="highlight-text">Build Your Reputation</span>
                 </div>
               </div>
               <div className="search-controls">
                 <div className="button-group">
                   <Link to="/gigs">
-                    <button className="btn browse-btn">Browse Gigs</button>
+                    <button className="btn browse-btn">
+                      <span>Explore Opportunities</span>
+                      <span className="btn-arrow">→</span>
+                    </button>
                   </Link>
                   <Link to="/gigs/create">
-                    <button className="btn post-btn">Post a Gig</button>
+                    <button className="btn post-btn">
+                      <span>Start Your Project</span>
+                      <span className="btn-arrow">→</span>
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -84,13 +91,13 @@ const HomePage = () => {
               <div className="find-work-content">
                 <h2 className="section-title">Find Opportunities</h2>
                 <p className="find-work-text">
-                  Browse available gigs and apply to the ones that match your skills.
-                  Join thousands of freelancers making their mark.
+                  Browse available gigs and apply to the ones that match your skills and expertise.
+                  Join our growing community of talented professionals and start earning today.
                 </p>
                 <Link to="/gigs">
                   <button className="find-work-btn">
                     <FaBriefcase className="btn-icon" />
-                    Find Work Now
+                    <span>Find Work Now</span>
                   </button>
                 </Link>
               </div>
@@ -141,5 +148,6 @@ const HomePage = () => {
     </div>
   );
 };
+
 
 export default HomePage;
