@@ -72,7 +72,8 @@ As the **primary backend contributor**, I:
 - Built models and controllers for users, gigs, and applications
 - Developed real-time chat functionality using Socket.IO
 - Integrated Cloudinary for image uploads with secure API calls
-- Set up production deployment using NGINX, PM2, and SSL on Azure
+- Integrated real-time performance testing using K6 to simulate concurrent user load and stress-test endpoints
+- Set up production deployment using NGINX and PM2 on Azure
 - Debugged MongoDB queries and optimized API performance
 
 ---
