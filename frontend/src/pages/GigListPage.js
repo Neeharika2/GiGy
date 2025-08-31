@@ -48,7 +48,7 @@ const GigListPage = () => {
     <div className="gigs-page">
       <div className="gigs-header">
         <div className="content-wrapper">
-          <h1 className="section-title">Available Gigs</h1>
+          <h1 className="section-title available-gigs-title">Available Gigs</h1>
           
           {/* Filter Form */}
           <div className="filters-section">
@@ -100,19 +100,7 @@ const GigListPage = () => {
                     placeholder="Max Budget"
                   />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="status">Status</label>
-                  <select
-                    id="status"
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value)}
-                  >
-                    <option value="open">Open</option>
-                    <option value="assigned">Assigned</option>
-                    <option value="completed">Completed</option>
-                    <option value="">All</option>
-                  </select>
-                </div>
+                
               </div>
               <button type="submit" className="filter-submit-btn">Apply Filters</button>
             </form>

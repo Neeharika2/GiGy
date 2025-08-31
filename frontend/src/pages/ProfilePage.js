@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import '../components/layout/Header.css';
@@ -158,105 +158,195 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="profile-page">
-      <div className="profile-container">
-        <div className="profile-header">
-          <h1 className="profile-title">My Profile</h1>
-          <p className="profile-subtitle">Manage your account settings and preferences</p>
+    <div className="profile-page modern-dashboard">
+      <div className="dashboard-hero">
+        <div className="hero-gradient"></div>
+        <div className="hero-content">
+          <div className="user-welcome">
+            <div className="user-avatar-section">
+              {userInfo?.profilePicture ? (
+                <img src={userInfo.profilePicture} alt="Profile" className="user-avatar-large" />
+              ) : (
+                <div className="avatar-placeholder-large">
+                  {userInfo?.name?.charAt(0)}
+                </div>
+              )}
+              <div className="online-status active"></div>
+            </div>
+            <div className="welcome-text">
+              <h1>Welcome back, {userInfo?.name?.split(' ')[0]}!</h1>
+              <p>Manage your professional profile and grow your freelance career</p>
+            </div>
+          </div>
+          
+          <div className="profile-stats-bar">
+            <div className="stat-card">
+              <span className="stat-number">{userInfo?.rating?.toFixed(1) || '0.0'}</span>
+              <span className="stat-label">Rating</span>
+              <span className="stat-icon">⭐</span>
+            </div>
+            <div className="stat-card">
+              <span className="stat-number">{userInfo?.completedGigs || 0}</span>
+              <span className="stat-label">Projects</span>
+              <span className="stat-icon">✅</span>
+            </div>
+            <div className="stat-card">
+              <span className="stat-number">{userReviews.length}</span>
+              <span className="stat-label">Reviews</span>
+              <span className="stat-icon">💬</span>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div className="profile-tabs">
+      <div className="dashboard-content">
+        <div className="profile-navigation modern-tabs">
           <button 
-            className={`tab-btn ${activeTab === 'personal' ? 'active' : ''}`}
+            className={`nav-tab ${activeTab === 'personal' ? 'active' : ''}`}
             onClick={() => setActiveTab('personal')}
           >
+            <span className="tab-icon">👤</span>
             Personal Info
           </button>
           <button 
-            className={`tab-btn ${activeTab === 'picture' ? 'active' : ''}`}
+            className={`nav-tab ${activeTab === 'picture' ? 'active' : ''}`}
             onClick={() => setActiveTab('picture')}
           >
+            <span className="tab-icon">📸</span>
             Profile Picture
           </button>
           <button 
-            className={`tab-btn ${activeTab === 'password' ? 'active' : ''}`}
+            className={`nav-tab ${activeTab === 'password' ? 'active' : ''}`}
             onClick={() => setActiveTab('password')}
           >
-            Change Password
+            <span className="tab-icon">🔐</span>
+            Security
           </button>
           <button 
-            className={`tab-btn ${activeTab === 'preferences' ? 'active' : ''}`}
+            className={`nav-tab ${activeTab === 'preferences' ? 'active' : ''}`}
             onClick={() => setActiveTab('preferences')}
           >
+            <span className="tab-icon">⚙️</span>
             Preferences
           </button>
           <button 
-            className={`tab-btn ${activeTab === 'reviews' ? 'active' : ''}`}
+            className={`nav-tab ${activeTab === 'reviews' ? 'active' : ''}`}
             onClick={() => setActiveTab('reviews')}
           >
+            <span className="tab-icon">⭐</span>
             Reviews
           </button>
         </div>
 
         {activeTab === 'personal' && (
-          <div className="profile-section">
-            <h2 className="section-title">Personal Information</h2>
-            {error && <div className="error-message">{error}</div>}
-            {formError && <div className="error-message">{formError}</div>}
-            {successMessage && <div className="success-message">{successMessage}</div>}
+          <div className="profile-section modern-section">
+            <div className="section-header">
+              <h2>Professional Information</h2>
+              <p>Keep your profile updated to attract better opportunities</p>
+            </div>
+            
+            <div className="section-benefits">
+              <div className="benefit-item">
+                <span className="benefit-icon">📈</span>
+                <span>Complete profiles get 3x more project invitations</span>
+              </div>
+              <div className="benefit-item">
+                <span className="benefit-icon">🎯</span>
+                <span>Accurate skills matching increases hire rate by 60%</span>
+              </div>
+            </div>
 
-            <form onSubmit={handleSubmit} className="profile-form">
-              <div className="form-grid">
-                <div className="form-group">
-                  <label htmlFor="name">Name</label>
+            {error && <div className="alert alert-error">{error}</div>}
+            {formError && <div className="alert alert-error">{formError}</div>}
+            {successMessage && <div className="alert alert-success">{successMessage}</div>}
+
+            <form onSubmit={handleSubmit} className="profile-form modern-form">
+              <div className="form-grid modern-grid">
+                <div className="form-group modern-group">
+                  <label htmlFor="name">
+                    <span className="label-icon">👤</span>
+                    Full Name
+                  </label>
                   <input
                     id="name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
+                    className="modern-input"
                   />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                <div className="form-group modern-group">
+                  <label htmlFor="email">
+                    <span className="label-icon">✉️</span>
+                    Email Address
+                  </label>
                   <input
                     id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="modern-input"
                   />
                 </div>
-                <div className="form-group full-width">
-                  <label htmlFor="bio">Bio</label>
+                <div className="form-group modern-group full-width">
+                  <label htmlFor="bio">
+                    <span className="label-icon">📝</span>
+                    Professional Bio
+                    <span className="label-hint">Tell clients about your expertise</span>
+                  </label>
                   <textarea
                     id="bio"
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
                     rows="4"
+                    className="modern-textarea"
+                    placeholder="Describe your professional background, skills, and what makes you unique..."
                   ></textarea>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="skills">Skills (comma separated)</label>
+                <div className="form-group modern-group">
+                  <label htmlFor="skills">
+                    <span className="label-icon">🛠️</span>
+                    Skills & Expertise
+                    <span className="label-hint">Comma separated</span>
+                  </label>
                   <input
                     id="skills"
                     type="text"
                     value={skills}
                     onChange={(e) => setSkills(e.target.value)}
+                    className="modern-input"
+                    placeholder="JavaScript, React, Node.js, UI/UX Design..."
                   />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="location">Location</label>
+                <div className="form-group modern-group">
+                  <label htmlFor="location">
+                    <span className="label-icon">📍</span>
+                    Location
+                  </label>
                   <input
                     id="location"
                     type="text"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
+                    className="modern-input"
+                    placeholder="City, Country or Remote"
                   />
                 </div>
               </div>
-              <button type="submit" className="submit-btn" disabled={isLoading}>
-                {isLoading ? 'Updating...' : 'Update Profile'}
+              <button type="submit" className="submit-btn modern-submit" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <span className="loading-spinner"></span>
+                    Updating...
+                  </>
+                ) : (
+                  <>
+                    <span className="btn-icon">💾</span>
+                    Update Profile
+                  </>
+                )}
               </button>
             </form>
           </div>
@@ -375,28 +465,41 @@ const ProfilePage = () => {
         )}
 
         {activeTab === 'reviews' && (
-          <div className="profile-section">
-            <h2 className="section-title">Reviews & Ratings</h2>
+          <div className="profile-section modern-section">
+            <div className="section-header">
+              <h2>Client Reviews & Ratings</h2>
+              <p>Your reputation speaks for your quality work</p>
+            </div>
+            
             {reviewsLoading ? (
-              <p>Loading reviews...</p>
+              <div className="loading-state">
+                <div className="loading-spinner"></div>
+                <p>Loading your reviews...</p>
+              </div>
             ) : userReviews.length === 0 ? (
-              <div className="empty-reviews">
-                <p>No reviews yet.</p>
-                <p>Complete some gigs to start receiving reviews!</p>
+              <div className="empty-state reviews-empty">
+                <div className="empty-icon">⭐</div>
+                <h3>No Reviews Yet</h3>
+                <p>Complete some projects to start receiving reviews from clients!</p>
+                <Link to="/gigs" className="cta-button">Find Projects</Link>
               </div>
             ) : (
-              <div className="reviews-stats">
-                <div className="rating-overview">
-                  <div className="overall-rating">
-                    <span className="rating-number">{userInfo?.rating?.toFixed(1) || '0.0'}</span>
-                    <span className="rating-stars">★★★★★</span>
-                    <span className="review-count">({userReviews.length} reviews)</span>
+              <div className="reviews-showcase">
+                <div className="rating-summary">
+                  <div className="overall-rating-card">
+                    <div className="rating-display-large">
+                      <span className="rating-number">{userInfo?.rating?.toFixed(1) || '0.0'}</span>
+                      <div className="stars-display">
+                        {'⭐'.repeat(Math.round(userInfo?.rating || 0))}
+                      </div>
+                      <span className="review-count">Based on {userReviews.length} reviews</span>
+                    </div>
                   </div>
                 </div>
                 
-                <div className="reviews-grid">
+                <div className="reviews-list modern-list">
                   {userReviews.map((review) => (
-                    <div key={review._id} className="review-card">
+                    <div key={review._id} className="review-card modern-card">
                       <div className="review-header">
                         {review.reviewer.profilePicture && (
                           <img 

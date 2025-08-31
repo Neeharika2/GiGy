@@ -16,6 +16,9 @@ const chatRoutes = require('./routes/chatRoutes');
 // Import socket.io handler
 const socketHandler = require('./utils/socketHandler');
 
+// Import auth middleware
+const { authErrorHandler } = require('./middleware/authMiddleware');
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -40,6 +43,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.error('MongoDB connection error:', err));
+
+// Auth error handling middleware
+app.use(authErrorHandler);
 
 // Routes
 app.use('/api/users', userRoutes);

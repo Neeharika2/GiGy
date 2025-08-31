@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
+import './PageCommon.css';
+import './ModernPages.css';
 import './EditGigPage.css';
 
 const EditGigPage = () => {
@@ -115,10 +117,13 @@ const EditGigPage = () => {
 
   if (loading) {
     return (
-      <div className="edit-gig-page">
-        <div className="main-content">
-          <div className="loading-container">
-            <p>Loading gig details...</p>
+      <div className="page-background">
+        <div className="page-content">
+          <div className="content-card">
+            <div className="loading-container">
+              <div className="loading-spinner"></div>
+              <p>Loading gig details...</p>
+            </div>
           </div>
         </div>
       </div>
@@ -126,138 +131,173 @@ const EditGigPage = () => {
   }
 
   return (
-    <div className="edit-gig-page">
-      <div className="main-content">
-        <div className="page-header">
-          <h1 className="page-title">Edit Gig</h1>
-        </div>
+    <div className="page-background">
+      <div className="page-content">
+        <h1 className="page-title">Edit Gig</h1>
         
-        {error && <div className="error-container">
-          <p>{error}</p>
-        </div>}
+        <div className="content-card">
+          {error && <div className="error-message">{error}</div>}
         
-        <form onSubmit={handleSubmit} className="edit-gig-form">
-          <div className="form-group">
-            <label htmlFor="title">Title *</label>
-            <input
-              id="title"
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="description">Description *</label>
-            <textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows="6"
-              required
-            ></textarea>
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="category">Category *</label>
-            <select
-              id="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              required
-            >
-              <option value="">Select a category</option>
-              <option value="Web Development">Web Development</option>
-              <option value="Mobile Development">Mobile Development</option>
-              <option value="Design">Design</option>
-              <option value="Writing">Writing</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="budget">Budget (USD) *</label>
-            <input
-              id="budget"
-              type="number"
-              min="1"
-              value={budget}
-              onChange={(e) => setBudget(e.target.value)}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="location">Location</label>
-            <input
-              id="location"
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="duration">Estimated Duration *</label>
-            <input
-              id="duration"
-              type="text"
-              value={duration}
-              onChange={(e) => setDuration(e.target.value)}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="skills">Required Skills (comma separated)</label>
-            <input
-              id="skills"
-              type="text"
-              value={skills}
-              onChange={(e) => setSkills(e.target.value)}
-            />
-          </div>
-          
-          {existingImages.length > 0 && (
+        <div className="gig-form-container">
+          <form onSubmit={handleSubmit} className="standard-form">
             <div className="form-group">
-              <label>Existing Images:</label>
-              <div className="image-preview-grid">
-                {existingImages.map((image, index) => (
-                  <img 
-                    key={index} 
-                    src={image} 
-                    alt={`Gig ${index + 1}`} 
-                    className="preview-image"
-                  />
-                ))}
-              </div>
+              <label htmlFor="title">
+                <span className="label-icon"><i className="fas fa-heading"></i></span>
+                Title *
+              </label>
+              <input
+                id="title"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
             </div>
-          )}
+            
+            <div className="form-group">
+              <label htmlFor="description">
+                <span className="label-icon"><i className="fas fa-align-left"></i></span>
+                Description *
+              </label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows="6"
+                required
+              ></textarea>
+            </div>
           
-          <div className="form-group">
-            <label htmlFor="images">Add New Images</label>
-            <input
-              id="images"
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={handleImageChange}
-              max="5"
-              className="file-input"
-            />
-            <small className="input-hint">
-              You can upload up to 5 new images (optional)
-            </small>
+            <div className="form-group">
+              <label htmlFor="category">
+                <span className="label-icon"><i className="fas fa-tag"></i></span>
+                Category *
+              </label>
+              <select
+                id="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                required
+              >
+                <option value="">Select a category</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Mobile Development">Mobile Development</option>
+                <option value="Design">Design</option>
+                <option value="Writing">Writing</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="budget">
+                <span className="label-icon"><i className="fas fa-dollar-sign"></i></span>
+                Budget (USD) *
+              </label>
+              <input
+                id="budget"
+                type="number"
+                min="1"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                required
+              />
+            </div>
+          
+            <div className="form-group">
+              <label htmlFor="location">
+                <span className="label-icon"><i className="fas fa-map-marker-alt"></i></span>
+                Location
+              </label>
+              <input
+                id="location"
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="duration">
+                <span className="label-icon"><i className="fas fa-clock"></i></span>
+                Estimated Duration *
+              </label>
+              <input
+                id="duration"
+                type="text"
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="skills">
+                <span className="label-icon"><i className="fas fa-tools"></i></span>
+                Required Skills 
+                <span className="label-hint">(comma separated)</span>
+              </label>
+              <input
+                id="skills"
+                type="text"
+                value={skills}
+                onChange={(e) => setSkills(e.target.value)}
+              />
+            </div>
+            
+            {existingImages.length > 0 && (
+              <div className="form-group">
+                <label>
+                  <span className="label-icon"><i className="fas fa-images"></i></span>
+                  Existing Images:
+                </label>
+                <div className="image-preview-grid">
+                  {existingImages.map((image, index) => (
+                    <img 
+                      key={index} 
+                      src={image} 
+                      alt={`Gig ${index + 1}`} 
+                      className="preview-image"
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            <div className="form-group">
+              <label htmlFor="images">
+                <span className="label-icon"><i className="fas fa-upload"></i></span>
+                Add New Images
+              </label>
+              <input
+                id="images"
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleImageChange}
+                max="5"
+                className="file-input"
+              />
+              <small className="input-hint">
+                You can upload up to 5 new images (optional)
+              </small>
+            </div>
+            
+            <button type="submit" className="primary-btn" disabled={isSubmitting}>
+              {isSubmitting ? 'Updating...' : 'Update Gig'}
+            </button>
+          </form>
+          
+          <div className="gig-illustration">
+            <div className="illustration-placeholder">
+              <div className="placeholder-icon">📝</div>
+              <p>Edit Your Gig</p>
+            </div>
           </div>
-          
-          <button type="submit" className="submit-btn" disabled={isSubmitting}>
-            {isSubmitting ? 'Updating...' : 'Update Gig'}
-          </button>
-        </form>
+        </div>
       </div>
-    </div>
+      </div>
+      </div>
   );
 };
 

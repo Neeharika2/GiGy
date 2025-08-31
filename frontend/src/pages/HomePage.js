@@ -5,9 +5,8 @@ import './HomePage.css';
 
 const HomePage = () => {
   return (
-    <div className="page-container">
-      <main className="main-content">
-        <div className="container">
+    <main className="main-content">
+      <div className="container">
           <section className="hero-section centered">
             <div className="floating-shapes">
               <div className="shape shape-1"></div>
@@ -101,7 +100,7 @@ const HomePage = () => {
             </div>
           </section>
           
-          <section className="benefits-section">
+          <section className="benefits-section why-choose-gigy">
             <div className="content-wrapper">
               <h2 className="section-title">Why Choose GiGy</h2>
               <div className="benefits-grid">
@@ -142,7 +141,6 @@ const HomePage = () => {
           </section>
         </div>
       </main>
-    </div>
   );
 };
 

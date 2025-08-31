@@ -77,12 +77,20 @@ const CreateGigPage = () => {
 
   return (
     <div className="create-gig-page">
+      <div className="decorative-shapes">
+        <div className="shape shape-1"></div>
+        <div className="shape shape-2"></div>
+      </div>
+      
       <h1 className="page-title">Create a New Gig</h1>
       {error && <div className="error-message">{error}</div>}
       
       <form onSubmit={handleSubmit} className="create-gig-form">
         <div className="form-group full-width">
-          <label htmlFor="title">Title *</label>
+          <label htmlFor="title">
+            <span className="label-icon">📝</span> Title *
+            <span className="label-hint">(Be specific and concise)</span>
+          </label>
           <input
             id="title"
             type="text"
@@ -94,7 +102,10 @@ const CreateGigPage = () => {
         </div>
         
         <div className="form-group full-width">
-          <label htmlFor="description">Description *</label>
+          <label htmlFor="description">
+            <span className="label-icon">📄</span> Description *
+            <span className="label-hint">(Be detailed about requirements)</span>
+          </label>
           <textarea
             id="description"
             value={description}
