@@ -60,26 +60,36 @@ const MessagesPage = () => {
   }, [userInfo]);
 
   return (
-    <div className="messages-page">
-      <div className="page-header">
-        <h1 className="page-title">Messages</h1>
+    <div className="messages-page modern-dashboard">
+      <div className="dashboard-hero">
+        <div className="hero-content">
+          <div className="page-header modern-header">
+            <div className="header-content">
+              <h1 className="page-title">Messages</h1>
+              <p className="page-subtitle">Connect with your clients and freelancers</p>
+            </div>
+          </div>
+        </div>
       </div>
       
-      <div className="conversations-container">
+      <div className="main-content">
         {loading ? (
-          <div className="loading-container">
+          <div className="loading-container modern-loading">
+            <div className="loading-spinner"></div>
             <p>Loading conversations...</p>
           </div>
         ) : error ? (
-          <div className="error-container">
+          <div className="error-container modern-error">
             <p>{error}</p>
           </div>
         ) : conversations.length === 0 ? (
-          <div className="empty-container">
-            <p>No conversations yet. Start chatting with someone!</p>
+          <div className="empty-container modern-empty">
+            <h3>No Conversations</h3>
+            <p>Start chatting with freelancers and clients!</p>
+            <Link to="/gigs" className="cta-button">Browse Projects</Link>
           </div>
         ) : (
-          <div className="conversation-list">
+          <div className="conversations-container">
             {conversations.map((conversation) => {
               const otherUser = conversation.participants[0];
               const isOnline = onlineUsers.includes(otherUser._id);
@@ -90,7 +100,7 @@ const MessagesPage = () => {
                   to={`/messages/${otherUser._id}`}
                   className="conversation-link"
                 >
-                  <div className={`conversation-card ${conversation.unread ? 'unread' : ''}`}>
+                  <div className={`conversation-card modern-card ${conversation.unread ? 'unread' : ''}`}>
                     <div className="avatar-container">
                       {otherUser.profilePicture ? (
                         <img
@@ -113,17 +123,18 @@ const MessagesPage = () => {
                           <span className="unread-badge">{conversation.unreadCount}</span>
                         )}
                       </h3>
+                      <p className="conversation-preview">
+                        {conversation.lastMessage.length > 50 
+                          ? `${conversation.lastMessage.substring(0, 50)}...` 
+                          : conversation.lastMessage}
+                      </p>
                     </div>
 
-                    <span className="conversation-time">
-                      {formatMessageTime(conversation.lastMessageDate)}
-                    </span>
-
-                    <p className="conversation-preview">
-                      {conversation.lastMessage.length > 50 
-                        ? `${conversation.lastMessage.substring(0, 50)}...` 
-                        : conversation.lastMessage}
-                    </p>
+                    <div className="conversation-meta">
+                      <span className="conversation-time">
+                        {formatMessageTime(conversation.lastMessageDate)}
+                      </span>
+                    </div>
                   </div>
                 </Link>
               );
@@ -136,3 +147,4 @@ const MessagesPage = () => {
 };
 
 export default MessagesPage;
+                        

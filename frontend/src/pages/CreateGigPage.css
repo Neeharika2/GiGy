@@ -1,106 +1,59 @@
+/* CreateGig page with consistent modern dashboard styling */
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
 .create-gig-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
-  padding: 2rem;
-  position: relative;
-  overflow-x: hidden;
-  padding-top: 100px; /* Prevent navbar overlap */
+  padding-top: 4rem;
 }
 
 .create-gig-page::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-  opacity: 0.4;
-  z-index: 0;
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  z-index: -2;
 }
 
-.decorative-shapes {
-  position: absolute;
+.create-gig-page::after {
+  content: '';
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.decorative-shapes .shape {
-  position: absolute;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(59, 130, 246, 0.05));
-  animation: float 8s ease-in-out infinite;
-  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
-}
-
-.shape-1 {
-  width: 120px;
-  height: 120px;
-  top: 15%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.shape-2 {
-  width: 200px;
-  height: 200px;
-  bottom: 20%;
-  right: 10%;
-  animation-delay: 4s;
-}
-
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
-    opacity: 0.6;
-  }
-  50% { 
-    transform: translateY(-30px) rotate(5deg); 
-    opacity: 0.8;
-  }
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="25" r="1" fill="white" opacity="0.05"/><circle cx="25" cy="75" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+  z-index: -1;
 }
 
 .page-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: white;
   text-align: center;
-  margin: 0 0 2rem 0;
-  text-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  position: relative;
-  z-index: 2;
-  animation: titleSlideIn 0.8s ease-out;
-}
-
-@keyframes titleSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  margin: 0 0 3rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem 0;
 }
 
 .create-gig-form {
   max-width: 800px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
+  margin: 0 auto 2rem;
+  background: white;
+  border-radius: 16px;
   padding: 2.5rem;
-  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.12), 0 4px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  position: relative;
-  z-index: 2;
-  border: 1px solid rgba(37, 99, 235, 0.1);
 }
 
 .create-gig-form::before {
@@ -110,8 +63,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #1e3a8a, #2563eb, #3b82f6);
-  border-radius: 20px 20px 0 0;
+  background: linear-gradient(90deg, #1e40af, #1e3a8a, #ec4899);
 }
 
 @keyframes formSlideUp {
@@ -138,15 +90,15 @@
   display: flex;
   align-items: center;
   font-weight: 600;
-  color: #1e40af;
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
   gap: 0.5rem;
 }
 
 .label-icon {
-  font-size: 1.2rem;
-  color: #3b82f6;
+  font-size: 1rem;
+  color: #1e40af;
 }
 
 .label-hint {
@@ -160,24 +112,24 @@
 .form-group input,
 .form-group textarea,
 .form-group select {
-  padding: 1rem 1.25rem;
+  width: 100%;
+  padding: 1rem;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: white;
+  background: #fafbfc;
   color: #1f2937;
   font-family: inherit;
-  resize: none;
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  transform: translateY(-1px);
+  border-color: #1e40af;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
 }
 
 .form-group textarea {
@@ -188,12 +140,12 @@
 
 .form-group select {
   cursor: pointer;
+  appearance: none;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 0.75rem center;
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
   padding-right: 2.5rem;
-  appearance: none;
 }
 
 .form-group input::placeholder,
@@ -212,87 +164,134 @@
 }
 
 .file-input:hover {
-  border-color: #3b82f6 !important;
+  border-color: #1e40af !important;
   background: #f8fafc !important;
 }
 
 .input-hint {
   color: #6b7280;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   margin-top: 0.5rem;
   font-style: italic;
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
   color: white;
   border: none;
-  padding: 1.25rem 2rem;
+  padding: 1rem 2rem;
   border-radius: 12px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.submit-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.5s;
-}
-
-.submit-btn:hover::before {
-  left: 100%;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
 }
 
 .submit-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(30, 64, 175, 0.4);
-}
-
-.submit-btn:active {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
 }
 
 .submit-btn:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
-  box-shadow: none;
-}
-
-.submit-btn:disabled::before {
-  display: none;
 }
 
 .error-message {
   background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-  border: 2px solid #f87171;
+  border: 1px solid #fca5a5;
   color: #dc2626;
-  padding: 1.25rem;
-  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
   margin: 0 auto 2rem;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
   max-width: 800px;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
-  animation: errorShake 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1);
 }
 
-@keyframes errorShake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+.error-message::before {
+  content: '⚠️';
+  font-size: 1.2rem;
+}
+
+/* Loading spinner for submit button */
+.submit-btn:disabled::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-left: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success validation styles */
+.form-group input:valid:not(:placeholder-shown),
+.form-group textarea:valid:not(:placeholder-shown),
+.form-group select:valid {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .create-gig-page {
+    padding-top: 3rem;
+  }
+  
+  .page-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+  }
+  
+  .create-gig-form {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    margin: 0 1rem 2rem;
+    gap: 1.5rem;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-gig-form {
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 0 0.5rem 2rem;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.75rem;
+  }
+  
+  .page-title {
+    font-size: 1.75rem;
+  }
 }
 
 /* Business Enhancement Styles */

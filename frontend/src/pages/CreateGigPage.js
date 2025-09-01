@@ -43,7 +43,6 @@ const CreateGigPage = () => {
         formData.append('skills', skills);
       }
       
-      // Append each image to form data
       if (images.length > 0) {
         for (let i = 0; i < images.length; i++) {
           formData.append('images', images[i]);
@@ -77,19 +76,15 @@ const CreateGigPage = () => {
 
   return (
     <div className="create-gig-page">
-      <div className="decorative-shapes">
-        <div className="shape shape-1"></div>
-        <div className="shape shape-2"></div>
-      </div>
+      <h1 className="page-title">Create New Project</h1>
       
-      <h1 className="page-title">Create a New Gig</h1>
       {error && <div className="error-message">{error}</div>}
       
       <form onSubmit={handleSubmit} className="create-gig-form">
         <div className="form-group full-width">
           <label htmlFor="title">
-            <span className="label-icon">📝</span> Title *
-            <span className="label-hint">(Be specific and concise)</span>
+            <span className="label-icon">📝</span> Project Title *
+            <span className="label-hint">(Be specific and clear)</span>
           </label>
           <input
             id="title"
@@ -97,26 +92,28 @@ const CreateGigPage = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            placeholder="A descriptive title for your gig"
+            placeholder="A descriptive title for your project"
           />
         </div>
         
         <div className="form-group full-width">
           <label htmlFor="description">
             <span className="label-icon">📄</span> Description *
-            <span className="label-hint">(Be detailed about requirements)</span>
+            <span className="label-hint">(Detailed requirements)</span>
           </label>
           <textarea
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
-            placeholder="Provide a detailed description of the task"
+            placeholder="Provide a detailed description of the project requirements, deliverables, and expectations..."
           ></textarea>
         </div>
         
         <div className="form-group">
-          <label htmlFor="category">Category *</label>
+          <label htmlFor="category">
+            <span className="label-icon">🏷️</span> Category *
+          </label>
           <select
             id="category"
             value={category}
@@ -134,7 +131,9 @@ const CreateGigPage = () => {
         </div>
         
         <div className="form-group">
-          <label htmlFor="budget">Budget (USD) *</label>
+          <label htmlFor="budget">
+            <span className="label-icon">💰</span> Budget (USD) *
+          </label>
           <input
             id="budget"
             type="number"
@@ -142,12 +141,14 @@ const CreateGigPage = () => {
             value={budget}
             onChange={(e) => setBudget(e.target.value)}
             required
-            placeholder="Your budget for this task"
+            placeholder="Your budget for this project"
           />
         </div>
         
         <div className="form-group">
-          <label htmlFor="location">Location</label>
+          <label htmlFor="location">
+            <span className="label-icon">📍</span> Location
+          </label>
           <input
             id="location"
             type="text"
@@ -158,7 +159,9 @@ const CreateGigPage = () => {
         </div>
         
         <div className="form-group">
-          <label htmlFor="duration">Estimated Duration *</label>
+          <label htmlFor="duration">
+            <span className="label-icon">⏱️</span> Duration *
+          </label>
           <input
             id="duration"
             type="text"
@@ -169,21 +172,24 @@ const CreateGigPage = () => {
           />
         </div>
         
-        <div className="form-group">
-          <label htmlFor="skills">Required Skills (comma separated)</label>
+        <div className="form-group full-width">
+          <label htmlFor="skills">
+            <span className="label-icon">🔧</span> Required Skills
+            <span className="label-hint">(Comma separated)</span>
+          </label>
           <input
             id="skills"
             type="text"
             value={skills}
             onChange={(e) => setSkills(e.target.value)}
-            placeholder="e.g., JavaScript, React, Node.js"
+            placeholder="e.g., JavaScript, React, Node.js, Figma"
           />
         </div>
         
-        <div className="form-group">
+        <div className="form-group full-width">
           <label htmlFor="images">
-            Images
-            <span className="label-hint">(up to 5 images)</span>
+            <span className="label-icon">🖼️</span> Project Images
+            <span className="label-hint">(Up to 5 images, optional)</span>
           </label>
           <input
             id="images"
@@ -195,13 +201,14 @@ const CreateGigPage = () => {
             className="file-input"
           />
           <small className="input-hint">
-            You can upload up to 5 images (optional)
+            Upload reference images, mockups, or examples (optional)
           </small>
         </div>
         
         <div className="form-group full-width">
           <button type="submit" className="submit-btn" disabled={isSubmitting}>
-            {isSubmitting ? 'Creating...' : 'Create Gig'}
+            <span className="label-icon">🚀</span>
+            {isSubmitting ? 'Creating Project...' : 'Create Project'}
           </button>
         </div>
       </form>

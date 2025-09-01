@@ -43,17 +43,23 @@ const MyApplicationsPage = () => {
     : applications.filter(app => app.status === filter);
 
   return (
-    <div className="page-container">
-      <div className="main-content">
-        <div className="applications-header">
-          <h1>My Applications</h1>
-          <Link to="/gigs" className="browse-btn">
-            Browse More Gigs
-          </Link>
+    <div className="my-applications-page modern-dashboard">
+      <div className="dashboard-hero">
+        <div className="hero-content">
+          <div className="applications-header modern-header">
+            <div className="header-content">
+              <h1>My Applications</h1>
+            </div>
+            <Link to="/gigs" className="browse-btn">
+              Browse More Gigs
+            </Link>
+          </div>
         </div>
-        
+      </div>
+      
+      <div className="main-content">
         {/* Filter Buttons */}
-        <div className="filter-container">
+        <div className="filter-container modern-filters">
           <button 
             className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
             onClick={() => setFilter('all')}
@@ -81,15 +87,16 @@ const MyApplicationsPage = () => {
         </div>
         
         {loading ? (
-          <div className="loading-container">
+          <div className="loading-container modern-loading">
+            <div className="loading-spinner"></div>
             <p>Loading your applications...</p>
           </div>
         ) : error ? (
-          <div className="error-container">
+          <div className="error-container modern-error">
             <p>{error}</p>
           </div>
         ) : filteredApplications.length === 0 ? (
-          <div className="empty-container">
+          <div className="empty-container modern-empty">
             <p>No applications found. {filter !== 'all' && 'Try a different filter or '} 
               <Link to="/gigs">apply to some gigs</Link>.
             </p>
@@ -97,7 +104,7 @@ const MyApplicationsPage = () => {
         ) : (
           <div className="applications-container">
             {filteredApplications.map((app) => (
-              <div key={app._id} className="application-card">
+              <div key={app._id} className="application-card modern-card">
                 <h3>Application for: {app.gig.title}</h3>
                 
                 <div className="application-details">

@@ -160,7 +160,6 @@ const ProfilePage = () => {
   return (
     <div className="profile-page modern-dashboard">
       <div className="dashboard-hero">
-        <div className="hero-gradient"></div>
         <div className="hero-content">
           <div className="user-welcome">
             <div className="user-avatar-section">
@@ -171,11 +170,10 @@ const ProfilePage = () => {
                   {userInfo?.name?.charAt(0)}
                 </div>
               )}
-              <div className="online-status active"></div>
             </div>
             <div className="welcome-text">
-              <h1>Welcome back, {userInfo?.name?.split(' ')[0]}!</h1>
-              <p>Manage your professional profile and grow your freelance career</p>
+              <h1>{userInfo?.name}</h1>
+              <p>Professional Profile</p>
             </div>
           </div>
           
@@ -183,17 +181,14 @@ const ProfilePage = () => {
             <div className="stat-card">
               <span className="stat-number">{userInfo?.rating?.toFixed(1) || '0.0'}</span>
               <span className="stat-label">Rating</span>
-              <span className="stat-icon">⭐</span>
             </div>
             <div className="stat-card">
               <span className="stat-number">{userInfo?.completedGigs || 0}</span>
               <span className="stat-label">Projects</span>
-              <span className="stat-icon">✅</span>
             </div>
             <div className="stat-card">
               <span className="stat-number">{userReviews.length}</span>
               <span className="stat-label">Reviews</span>
-              <span className="stat-icon">💬</span>
             </div>
           </div>
         </div>
@@ -205,35 +200,24 @@ const ProfilePage = () => {
             className={`nav-tab ${activeTab === 'personal' ? 'active' : ''}`}
             onClick={() => setActiveTab('personal')}
           >
-            <span className="tab-icon">👤</span>
-            Personal Info
+            Profile
           </button>
           <button 
             className={`nav-tab ${activeTab === 'picture' ? 'active' : ''}`}
             onClick={() => setActiveTab('picture')}
           >
-            <span className="tab-icon">📸</span>
-            Profile Picture
+            Photo
           </button>
           <button 
             className={`nav-tab ${activeTab === 'password' ? 'active' : ''}`}
             onClick={() => setActiveTab('password')}
           >
-            <span className="tab-icon">🔐</span>
             Security
-          </button>
-          <button 
-            className={`nav-tab ${activeTab === 'preferences' ? 'active' : ''}`}
-            onClick={() => setActiveTab('preferences')}
-          >
-            <span className="tab-icon">⚙️</span>
-            Preferences
           </button>
           <button 
             className={`nav-tab ${activeTab === 'reviews' ? 'active' : ''}`}
             onClick={() => setActiveTab('reviews')}
           >
-            <span className="tab-icon">⭐</span>
             Reviews
           </button>
         </div>
@@ -241,19 +225,7 @@ const ProfilePage = () => {
         {activeTab === 'personal' && (
           <div className="profile-section modern-section">
             <div className="section-header">
-              <h2>Professional Information</h2>
-              <p>Keep your profile updated to attract better opportunities</p>
-            </div>
-            
-            <div className="section-benefits">
-              <div className="benefit-item">
-                <span className="benefit-icon">📈</span>
-                <span>Complete profiles get 3x more project invitations</span>
-              </div>
-              <div className="benefit-item">
-                <span className="benefit-icon">🎯</span>
-                <span>Accurate skills matching increases hire rate by 60%</span>
-              </div>
+              <h2>Profile Information</h2>
             </div>
 
             {error && <div className="alert alert-error">{error}</div>}
@@ -263,10 +235,7 @@ const ProfilePage = () => {
             <form onSubmit={handleSubmit} className="profile-form modern-form">
               <div className="form-grid modern-grid">
                 <div className="form-group modern-group">
-                  <label htmlFor="name">
-                    <span className="label-icon">👤</span>
-                    Full Name
-                  </label>
+                  <label htmlFor="name">Name</label>
                   <input
                     id="name"
                     type="text"
@@ -277,10 +246,7 @@ const ProfilePage = () => {
                   />
                 </div>
                 <div className="form-group modern-group">
-                  <label htmlFor="email">
-                    <span className="label-icon">✉️</span>
-                    Email Address
-                  </label>
+                  <label htmlFor="email">Email</label>
                   <input
                     id="email"
                     type="email"
@@ -291,62 +257,41 @@ const ProfilePage = () => {
                   />
                 </div>
                 <div className="form-group modern-group full-width">
-                  <label htmlFor="bio">
-                    <span className="label-icon">📝</span>
-                    Professional Bio
-                    <span className="label-hint">Tell clients about your expertise</span>
-                  </label>
+                  <label htmlFor="bio">Bio</label>
                   <textarea
                     id="bio"
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
                     rows="4"
                     className="modern-textarea"
-                    placeholder="Describe your professional background, skills, and what makes you unique..."
+                    placeholder="Professional background and expertise..."
                   ></textarea>
                 </div>
                 <div className="form-group modern-group">
-                  <label htmlFor="skills">
-                    <span className="label-icon">🛠️</span>
-                    Skills & Expertise
-                    <span className="label-hint">Comma separated</span>
-                  </label>
+                  <label htmlFor="skills">Skills</label>
                   <input
                     id="skills"
                     type="text"
                     value={skills}
                     onChange={(e) => setSkills(e.target.value)}
                     className="modern-input"
-                    placeholder="JavaScript, React, Node.js, UI/UX Design..."
+                    placeholder="JavaScript, React, Design..."
                   />
                 </div>
                 <div className="form-group modern-group">
-                  <label htmlFor="location">
-                    <span className="label-icon">📍</span>
-                    Location
-                  </label>
+                  <label htmlFor="location">Location</label>
                   <input
                     id="location"
                     type="text"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     className="modern-input"
-                    placeholder="City, Country or Remote"
+                    placeholder="City, Country"
                   />
                 </div>
               </div>
               <button type="submit" className="submit-btn modern-submit" disabled={isLoading}>
-                {isLoading ? (
-                  <>
-                    <span className="loading-spinner"></span>
-                    Updating...
-                  </>
-                ) : (
-                  <>
-                    <span className="btn-icon">💾</span>
-                    Update Profile
-                  </>
-                )}
+                {isLoading ? 'Updating...' : 'Update Profile'}
               </button>
             </form>
           </div>
@@ -366,7 +311,6 @@ const ProfilePage = () => {
               
               <form onSubmit={handleImageUpload} className="file-upload">
                 <div className="form-group">
-                  <label htmlFor="image">Upload new profile picture</label>
                   <input
                     id="image"
                     type="file"
@@ -375,7 +319,7 @@ const ProfilePage = () => {
                   />
                 </div>
                 <button type="submit" className="submit-btn" disabled={isLoading || !image}>
-                  {isLoading ? 'Uploading...' : 'Upload Image'}
+                  {isLoading ? 'Uploading...' : 'Upload'}
                 </button>
               </form>
             </div>
@@ -410,7 +354,7 @@ const ProfilePage = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="confirmNewPassword">Confirm New Password</label>
+                <label htmlFor="confirmNewPassword">Confirm Password</label>
                 <input
                   id="confirmNewPassword"
                   type="password"
@@ -420,67 +364,27 @@ const ProfilePage = () => {
                 />
               </div>
               <button type="submit" className="submit-btn">
-                Change Password
+                Update Password
               </button>
             </form>
-          </div>
-        )}
-
-        {activeTab === 'preferences' && (
-          <div className="profile-section">
-            <h2 className="section-title">Account Preferences</h2>
-            <div className="preferences-grid">
-              <div className="preference-item">
-                <div className="preference-content">
-                  <h3>Email Notifications</h3>
-                  <p>Receive notifications about new gig opportunities</p>
-                </div>
-                <label className="switch">
-                  <input type="checkbox" defaultChecked />
-                  <span className="slider"></span>
-                </label>
-              </div>
-              <div className="preference-item">
-                <div className="preference-content">
-                  <h3>Profile Visibility</h3>
-                  <p>Make your profile visible to potential clients</p>
-                </div>
-                <label className="switch">
-                  <input type="checkbox" defaultChecked />
-                  <span className="slider"></span>
-                </label>
-              </div>
-              <div className="preference-item">
-                <div className="preference-content">
-                  <h3>SMS Notifications</h3>
-                  <p>Receive SMS alerts for urgent gig updates</p>
-                </div>
-                <label className="switch">
-                  <input type="checkbox" />
-                  <span className="slider"></span>
-                </label>
-              </div>
-            </div>
           </div>
         )}
 
         {activeTab === 'reviews' && (
           <div className="profile-section modern-section">
             <div className="section-header">
-              <h2>Client Reviews & Ratings</h2>
-              <p>Your reputation speaks for your quality work</p>
+              <h2>Reviews & Ratings</h2>
             </div>
             
             {reviewsLoading ? (
               <div className="loading-state">
                 <div className="loading-spinner"></div>
-                <p>Loading your reviews...</p>
+                <p>Loading reviews...</p>
               </div>
             ) : userReviews.length === 0 ? (
               <div className="empty-state reviews-empty">
-                <div className="empty-icon">⭐</div>
-                <h3>No Reviews Yet</h3>
-                <p>Complete some projects to start receiving reviews from clients!</p>
+                <h3>No Reviews</h3>
+                <p>Complete projects to receive client reviews.</p>
                 <Link to="/gigs" className="cta-button">Find Projects</Link>
               </div>
             ) : (
@@ -490,9 +394,9 @@ const ProfilePage = () => {
                     <div className="rating-display-large">
                       <span className="rating-number">{userInfo?.rating?.toFixed(1) || '0.0'}</span>
                       <div className="stars-display">
-                        {'⭐'.repeat(Math.round(userInfo?.rating || 0))}
+                        {'★'.repeat(Math.round(userInfo?.rating || 0))}
                       </div>
-                      <span className="review-count">Based on {userReviews.length} reviews</span>
+                      <span className="review-count">{userReviews.length} reviews</span>
                     </div>
                   </div>
                 </div>
@@ -501,22 +405,13 @@ const ProfilePage = () => {
                   {userReviews.map((review) => (
                     <div key={review._id} className="review-card modern-card">
                       <div className="review-header">
-                        {review.reviewer.profilePicture && (
-                          <img 
-                            src={review.reviewer.profilePicture} 
-                            alt={review.reviewer.name} 
-                            className="reviewer-avatar"
-                          />
-                        )}
                         <div className="review-meta">
                           <p className="reviewer-name">{review.reviewer.name}</p>
-                          <p className="review-rating">Rating: {review.rating} / 5</p>
+                          <p className="review-rating">★ {review.rating}/5</p>
                         </div>
                       </div>
                       <p className="review-content">{review.comment}</p>
-                      <p className="review-gig">
-                        For gig: {review.gig.title}
-                      </p>
+                      <p className="review-gig">Project: {review.gig.title}</p>
                     </div>
                   ))}
                 </div>
@@ -528,7 +423,5 @@ const ProfilePage = () => {
     </div>
   );
 };
-
-
 
 export default ProfilePage;

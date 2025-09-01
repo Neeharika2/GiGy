@@ -43,14 +43,20 @@ const MyAssignmentsPage = () => {
     : assignments.filter(assignment => assignment.status === filter);
 
   return (
-    <div className="page-container">
-      <div className="main-content">
-        <div className="assignments-header">
-          <h1>My Assigned Gigs</h1>
+    <div className="my-assignments-page modern-dashboard">
+      <div className="dashboard-hero">
+        <div className="hero-content">
+          <div className="assignments-header modern-header">
+            <div className="header-content">
+              <h1>My Assigned Gigs</h1>
+            </div>
+          </div>
         </div>
-        
+      </div>
+      
+      <div className="main-content">
         {/* Filter Buttons */}
-        <div className="filter-container">
+        <div className="filter-container modern-filters">
           <button 
             className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
             onClick={() => setFilter('all')}
@@ -72,15 +78,16 @@ const MyAssignmentsPage = () => {
         </div>
         
         {loading ? (
-          <div className="loading-container">
+          <div className="loading-container modern-loading">
+            <div className="loading-spinner"></div>
             <p>Loading your assignments...</p>
           </div>
         ) : error ? (
-          <div className="error-container">
+          <div className="error-container modern-error">
             <p>{error}</p>
           </div>
         ) : filteredAssignments.length === 0 ? (
-          <div className="empty-container">
+          <div className="empty-container modern-empty">
             <p>No assignments found. {filter !== 'all' && 'Try a different filter or '} 
               <Link to="/gigs">browse available gigs</Link>.
             </p>
@@ -88,7 +95,7 @@ const MyAssignmentsPage = () => {
         ) : (
           <div className="assignments-container">
             {filteredAssignments.map((assignment) => (
-              <div key={assignment._id} className="assignment-card">
+              <div key={assignment._id} className="assignment-card modern-card">
                 <h3>{assignment.title}</h3>
                 <p>{assignment.description.substring(0, 150)}...</p>
                 <div className="assignment-details">

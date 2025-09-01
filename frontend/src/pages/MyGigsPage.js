@@ -64,8 +64,7 @@ const MyGigsPage = () => {
 
   return (
     <div className="my-gigs-page modern-dashboard">
-      <div className="dashboard-hero compact-hero">
-        <div className="hero-gradient"></div>
+      <div className="dashboard-hero">
         <div className="hero-content">
           <div className="page-header modern-header">
             <div className="header-content">
@@ -80,71 +79,56 @@ const MyGigsPage = () => {
           
           <div className="dashboard-stats">
             <div className="stat-card">
-              <div className="stat-info">
-                <span className="stat-number">{gigs.length}</span>
-                <span className="stat-label">Total Projects</span>
-              </div>
-              <span className="stat-icon">📊</span>
+              <span className="stat-number">{gigs.length}</span>
+              <span className="stat-label">Total Projects</span>
             </div>
             <div className="stat-card">
-              <div className="stat-info">
-                <span className="stat-number">{gigs.filter(g => g.status === 'open').length}</span>
-                <span className="stat-label">Open</span>
-              </div>
-              <span className="stat-icon">🔓</span>
+              <span className="stat-number">{gigs.filter(g => g.status === 'open').length}</span>
+              <span className="stat-label">Open</span>
             </div>
             <div className="stat-card">
-              <div className="stat-info">
-                <span className="stat-number">{gigs.filter(g => g.status === 'assigned').length}</span>
-                <span className="stat-label">In Progress</span>
-              </div>
-              <span className="stat-icon">⏳</span>
+              <span className="stat-number">{gigs.filter(g => g.status === 'assigned').length}</span>
+              <span className="stat-label">In Progress</span>
             </div>
             <div className="stat-card">
-              <div className="stat-info">
-                <span className="stat-number">{gigs.filter(g => g.status === 'completed').length}</span>
-                <span className="stat-label">Completed</span>
-              </div>
-              <span className="stat-icon">✅</span>
+              <span className="stat-number">{gigs.filter(g => g.status === 'completed').length}</span>
+              <span className="stat-label">Completed</span>
             </div>
           </div>
         </div>
       </div>
       
-      <div className="main-content compact-content">
-        <div className="content-header">
-          <div className="filter-section modern-filters">
-            <h3>Filter Projects</h3>
-            <div className="filter-tabs">
-              <button 
-                className={`filter-tab ${filter === 'all' ? 'active' : ''}`}
-                onClick={() => setFilter('all')}
-              >
-                <span className="filter-count">{gigs.length}</span>
-                All Projects
-              </button>
-              <button 
-                className={`filter-tab ${filter === 'open' ? 'active' : ''}`}
-                onClick={() => setFilter('open')}
-              >
-                <span className="filter-count">{gigs.filter(g => g.status === 'open').length}</span>
-                Open
-              </button>
-              <button 
-                className={`filter-tab ${filter === 'assigned' ? 'active' : ''}`}
-                onClick={() => setFilter('assigned')}
-              >
-                <span className="filter-count">{gigs.filter(g => g.status === 'assigned').length}</span>
-                Assigned
-              </button>
-              <button 
-                className={`filter-tab ${filter === 'completed' ? 'active' : ''}`}
-                onClick={() => setFilter('completed')}
-              >
-                <span className="filter-count">{gigs.filter(g => g.status === 'completed').length}</span>
-                Completed
-              </button>
-            </div>
+      <div className="main-content">
+        <div className="filter-section modern-filters">
+          <div className="filter-tabs">
+            <button 
+              className={`filter-tab ${filter === 'all' ? 'active' : ''}`}
+              onClick={() => setFilter('all')}
+            >
+              <span className="filter-count">{gigs.length}</span>
+              All Projects
+            </button>
+            <button 
+              className={`filter-tab ${filter === 'open' ? 'active' : ''}`}
+              onClick={() => setFilter('open')}
+            >
+              <span className="filter-count">{gigs.filter(g => g.status === 'open').length}</span>
+              Open
+            </button>
+            <button 
+              className={`filter-tab ${filter === 'assigned' ? 'active' : ''}`}
+              onClick={() => setFilter('assigned')}
+            >
+              <span className="filter-count">{gigs.filter(g => g.status === 'assigned').length}</span>
+              Assigned
+            </button>
+            <button 
+              className={`filter-tab ${filter === 'completed' ? 'active' : ''}`}
+              onClick={() => setFilter('completed')}
+            >
+              <span className="filter-count">{gigs.filter(g => g.status === 'completed').length}</span>
+              Completed
+            </button>
           </div>
         </div>
 
@@ -336,3 +320,4 @@ const MyGigsPage = () => {
 };
 
 export default MyGigsPage;
+                
