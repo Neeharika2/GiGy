@@ -170,31 +170,22 @@ const updateGig = async (req, res) => {
 // @access  Private
 const deleteGig = async (req, res) => {
   try {
-    // Check if req.user exists (authentication middleware)
-    if (!req.user || !req.user._id) {
-      return res.status(401).json({ message: 'Not authorized, user not found' });
-    }
-
     const gig = await Gig.findById(req.params.id);
     
     if (!gig) {
       return res.status(404).json({ message: 'Gig not found' });
     }
     
-    // Check if the gig has a creator property
-    if (!gig.creator) {
-      return res.status(400).json({ message: 'Gig has no creator information' });
-    }
-    
+    // Check if user is authorized to delete this gig
     if (gig.creator.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: 'You are not authorized to delete this gig' });
     }
     
+    // Only allow deletion of open gigs
     if (gig.status !== 'open') {
       return res.status(400).json({ message: 'Cannot delete a gig that is already assigned or completed' });
     }
     
-    // Use findByIdAndDelete instead of remove()
     await Gig.findByIdAndDelete(req.params.id);
     
     // Update user's posted gigs count
